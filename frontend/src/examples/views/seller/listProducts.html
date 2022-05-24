@@ -1,0 +1,229 @@
+<div id="wrapper">
+    <div ng-include="'views/block/userNavigation.html'"></div>
+
+    <div ng-include="'views/seller/productsSidebar.html'"></div>
+
+    <div id="page-content-wrapper">
+        <h3>List of products</h3>
+        <a class="btn btn-success" click-prevent="true" ng-click="product.openModal()">Create new product</a>
+
+        <div class="ns-filters-block">
+            <h4 class="inner-block">Filters:</h4>
+
+            <div class="inner-block">
+            <span>Condition:&nbsp;</span>
+            <div class="btn-group">
+                <label class="btn btn-primary" ng-model="products.filters.condition" uib-btn-radio="'ALL'">All</label>
+                <label class="btn btn-primary" ng-model="products.filters.condition" uib-btn-radio="'NEW'">New</label>
+                <label class="btn btn-primary" ng-model="products.filters.condition" uib-btn-radio="'USED'">Used</label>
+            </div>
+            </div>
+        </div>
+
+        <!--<h3>1 {{products}}</h3>-->
+        <!--<h3>2 {{products.data}}</h3>-->
+
+        <div class="ns-seller bg-warning" ng-if="!products.data || !products.data.length">No products</div>
+        <div class="ns-seller product" ng-repeat="(i, p) in products.data">
+            <div class="ns-seller product-inner">
+                <h4>{{i+1}}. {{ p.title }}</h4>
+                <p>{{ p.description }}</p>
+
+                <a class="btn btn-success inner-block" ng-click="variant.openModal(p.id)" click-prevent="true">Add variant</a>
+
+                <uib-tabset>
+                <uib-tab ng-repeat="variant in p.variants" heading="{{ 'Variant ' + ($index + 1) }}" active="variant.active"><div class="inner-block">
+                    <div class="ns-seller management">
+                        <a class="btn btn-primary disabled" click-prevent="true">Edit variant</a>
+                        <a class="btn btn-danger pull-right" click-prevent="true" ng-class="{true: 'disabled'}[p.variants.length == 1]"
+                           ng-click="products.deleteVariant(p.id, variant.id, p.variants.length == 1)">Delete variant</a>
+                    </div>
+
+                    <h5 ng-if="variant.title != ''">{{ variant.title }}</h5>
+                    <p ng-if="variant.description != ''">{{ variant.description }}</p>
+                <div class="ns-seller ns-price">Price: {{ ::variant.price.asString()}}</div>
+                <div class="ns-seller ns-amount">Amount: {{ variant.amount}}</div>
+                <button ng-if="products.amount(p.id) > 0"
+                    class="btn btn-default"
+                    ng-click="auction.openModal(p.id, variant.id)">Create auction</button>
+                <button ng-if="variant.amount > 0"
+                    class="btn"
+                    ng-click="offerScope.openModal(p.id, variant.id)">Create offer scope</button>
+
+                <div ng-if="variant.offers && variant.offers.length">
+                    <div class="ns-seller ns-offer" ng-repeat="offer in variant.offers" ng-class="{'ns-accepted': offer.accepted, 'ns-rejected': offer.rejected, 'ns-open': !offer.accepted&&!offer.rejected}">
+                        <div class="ns-seller ns-offer-inner clearfix">
+                            <b>Offer from user [{{offer.userId}}]</b>
+                            <div>Price per item:&nbsp;{{offer.price.asString()}}</div>
+                            <div>Number of items:&nbsp;{{offer.qty}}</div>
+                            <div>Summary: <b>{{offer.price.multiply(offer.qty).asString()}}</b></div>
+                            <div>Made:&nbsp;{{::offer.created}}</div>
+                            <div ng-if="offer.message">{{offer.message}}</div>
+                            <a ng-if="!offer.accepted && !offer.rejected && offer.qty <= p.variants[0].amount" class="btn btn-success" ng-click="products.acceptOffer(p.id, variant.id, offer.id)">Accept offer</a>
+                            <a ng-if="!offer.accepted && !offer.rejected" class="btn btn-danger" ng-click="products.rejectOffer(p.id, variant.id, offer.id)">Reject offer</a>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+                </uib-tab>
+                </uib-tabset>
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- Modal -->
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Create auction</h3>
+        </div>
+        <div class="modal-body">
+            <form name="createAuctionForm">
+                <h4>Start auction</h4>
+                <div style="display:inline-block; min-height:290px;">
+                    <uib-datepicker ng-model="auction.data.startAt" min-date="auction.minDate" show-weeks="true" class="well well-sm" ></uib-datepicker>
+                </div>
+
+                <h4>Finish auction</h4>
+                <div style="display:inline-block; min-height:290px;">
+                    <uib-datepicker ng-model="auction.data.finishAt" min-date="auction.data.startAt" show-weeks="true" class="well well-sm" ></uib-datepicker>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="auction.ok()" ng-disabled="createAuctionForm.$invalid">Create auction</button>
+            <button class="btn btn-warning" type="button" ng-click="auction.close()">Cancel</button>
+        </div>
+    </script>
+
+
+    <script type="text/ng-template" id="offerScope.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Create offer scope</h3>
+        </div>
+        <div class="modal-body">
+            <form name="createOfferScopeForm">
+                <div>
+                <h4>From</h4>
+                <div style="display:inline-block; min-height:290px;">
+                    <uib-datepicker ng-model="offerScope.data.startAtDate" min-date="offerScope.minDate" show-weeks="true" class="well well-sm" ></uib-datepicker>
+                </div>
+                <div style="display:inline-block; min-height:290px;">
+                    <uib-timepicker ng-model="offerScope.data.startAtTime" ng-change="changed()" hour-step="offerScope.presets.hstep" minute-step="offerScope.presets.mstep" show-meridian="offerScope.presets.ismeridian"></uib-timepicker>
+                </div>
+                <button class="btn btn-default" ng-click="offerScope.withEndDate = !offerScope.withEndDate">Toggle end of scope period</button>
+                </div>
+
+                <div ng-if="offerScope.withEndDate">
+                <h4>till</h4>
+                <div style="display:inline-block; min-height:290px;">
+                    <uib-datepicker ng-model="offerScope.data.finishAtDate" min-date="offerScope.data.startAt" show-weeks="true" class="well well-sm" ></uib-datepicker>
+                </div>
+                <div style="display:inline-block; min-height:290px;">
+                    <uib-timepicker ng-model="offerScope.data.finishAtTime" ng-change="changed()" hour-step="offerScope.presets.hstep" minute-step="offerScope.presets.mstep" show-meridian="offerScope.presets.ismeridian"></uib-timepicker>
+                </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="offerScope.ok()" ng-disabled="createOfferScopeForm.$invalid">Create scope</button>
+            <button class="btn btn-warning" type="button" ng-click="offerScope.close()">Cancel</button>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="createProduct.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Create product</h3>
+        </div>
+
+        <div class="modal-body">
+            <form name="createProductForm">
+
+
+                <label for="title" class="sr-only">Product title</label>
+                <input type="text" id="title" class="form-control" placeholder="Product Title" ng-model="product.data.title"
+                       required autofocus>
+
+                <label for="description" class="sr-only">Product description</label>
+                <textarea rows="3" id="description" class="form-control" placeholder="Product description"
+                  ng-model="product.data.description" required></textarea>
+
+                <label for="price" class="sr-only">Product price (EURO)</label>
+                <input type="number" step="0.01"  id="price" class="form-control" placeholder="Product price"
+                       ng-model="product.data.price" required>
+
+                <label for="amount" class="sr-only">Available amount</label>
+                <input type="number" id="amount" class="form-control" placeholder="Available amount"
+                       ng-model="product.data.amount"
+                       required>
+
+                <label for="condition" class="sr-only">Product condition</label>
+                <select id="condition" ng-model="product.data.condition">
+                    <option value="NEW" selected>New</option>
+                    <option value="USED">Used</option>
+                </select>
+
+                <div ng-repeat="o in product.categories">
+                    <h4><a href="#" click-prevent="true" ng-click="product.chooseCategory(o.id)">{{ "-->" + o.title }}</a></h4>
+                </div>
+
+                <div ng-repeat="o in product.currentChildren">
+                    <h5><a href="#" click-prevent="true" ng-click="product.chooseSubCategory(o.category.id)">{{ "+ " +
+                        o.category.name }}</a></h5>
+                </div>
+
+
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="product.ok()" ng-disabled="createProductForm.$invalid">Create product</button>
+            <button class="btn btn-warning" type="button" ng-click="product.close()">Cancel</button>
+        </div>
+
+    </script>
+
+    <script type="text/ng-template" id="createVariant.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Create Variant</h3>
+        </div>
+
+        <div class="modal-body">
+            <form name="createVariantForm">
+
+
+                <label for="title" class="sr-only">Variant title</label>
+                <input type="text" id="title" class="form-control" placeholder="Variant Title" ng-model="variant.data.title"
+                       autofocus>
+
+                <label for="description" class="sr-only">Product description</label>
+                <textarea rows="3" id="description" class="form-control" placeholder="Variant description"
+                          ng-model="variant.data.description"></textarea>
+
+                <label for="price" class="sr-only">Product price (EURO)</label>
+                <input type="number" step="0.01"  id="price" class="form-control" placeholder="Variant price"
+                       ng-model="variant.data.price" required>
+
+                <label for="amount" class="sr-only">Available amount</label>
+                <input type="number" id="amount" class="form-control" placeholder="Available amount"
+                       ng-model="variant.data.amount"
+                       required>
+
+                <label for="condition" class="sr-only">Variant condition</label>
+                <select id="condition" ng-model="variant.data.condition">
+                    <option value="NEW" selected>New</option>
+                    <option value="USED">Used</option>
+                </select>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="variant.ok()" ng-disabled="createVariantForm.$invalid">Create variant</button>
+            <button class="btn btn-warning" type="button" ng-click="variant.close()">Cancel</button>
+        </div>
+
+    </script>
+
+</div>

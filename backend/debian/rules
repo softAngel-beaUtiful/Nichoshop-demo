@@ -1,0 +1,49 @@
+#!/usr/bin/make -f
+
+ASSEMBLY_COMPONENT=nichoshop_backend
+COMPONENT=nichoshop-backend
+
+export DH_OPTIONS=-Pdebian/$(COMPONENT)
+export DEVSCRIPTS_CHECK_DIRNAME_LEVEL=0
+
+export MAVEN_OPTS=-Xmx768m -XX:MaxPermSize=204m -XX:+CMSClassUnloadingEnabled
+
+binary-indep: build install
+	@echo "====	Building the package ..."
+	dh_compress
+	dh_fixperms
+	dh_installdeb
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+	@echo "====	Done."
+
+build:
+	@echo "====	Rebuilding sources ..."
+	dh_testdir
+	sbt assembly
+	touch build
+
+install:
+	@echo "====	Installing into temporary folder ..."
+	dh_testroot
+	dh_testdir
+	dh_installdirs
+	dh_installchangelogs
+	cp -r target/scala-2.11/$(ASSEMBLY_COMPONENT)-assembly-1.0.jar debian/$(COMPONENT)/usr/lib/nichoshop/nichoshop-backend/lib/
+	cp -r src/main/assembly/nichoshop.sh debian/$(COMPONENT)/usr/bin/
+	dh_install --sourcedir=debian/$(COMPONENT)
+	dh_installinit -r --name=$(COMPONENT)
+
+clean:
+	@echo "====	Cleaning folders... "
+	dh_testroot
+	dh_testdir
+	-rm -f `find . -name "*~"`
+	-rm -rf build debian/$(COMPONENT) debian/tmp debian/files* core debian/substvars debian/debhelper.log
+
+binary-arch:
+
+binary: binary-indep
+
+.PHONY: binary binary-arch binary-indep clean

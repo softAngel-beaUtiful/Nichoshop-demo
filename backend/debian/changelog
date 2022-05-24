@@ -1,0 +1,123 @@
+nichoshop-backend (1.0-17) testing; urgency=autodeploy
+
+  * Permission model. Roles and permissions.
+
+ -- Evgeny Zhoga <ezhoga@gmail.com>  Wed, 2 Dec 2015 00:30:00 +0100
+
+nichoshop-backend (1.0-16) testing; urgency=autodeploy
+
+  * added conditionType inheritance for categories
+
+ -- Evgeny Zhoga <ezhoga@gmail.com>  Sun, 15 Nov 2015 16:12:00 +0100
+
+nichoshop-backend (1.0-15) testing; urgency=autodeploy
+
+  * improvements:
+    - added "edit attribute" ability
+    - leave just one type of attributes (set of predefined values)
+    - child categories inherit parent's attributes
+    - attribute option values are shown in information window for category
+
+ -- Evgeny Zhoga <ezhoga@gmail.com>  Sun, 15 Nov 2015 15:12:00 +0100
+
+nichoshop-backend (1.0-14) testing; urgency=autodeploy
+
+  * - admin part setup. Categories, product attributes, condition types managing
+
+ -- Evgeny Zhoga <ezhoga@gmail.com>  Sat, 14 Nov 2015 21:35:00 +0100
+
+nichoshop-backend (1.0-13) testing; urgency=autodeploy
+
+  * - product condition could be set
+    - filter on product condition is available in seller space
+    - product variants could be added and deleted
+
+ -- Evgeny Zhoga <ezhoga@gmail.com>  Sun, 8 Nov 2015 22:45:00 +0100
+
+nichoshop-backend (1.0-12) testing; urgency=autodeploy
+
+  * bugfix for previous build
+
+ -- Evgeny Zhoga <ezhoga@gmail.com>  Fri, 30 Oct 2015 21:12:00 +0200
+
+nichoshop-backend (1.0-11) testing; urgency=autodeploy
+
+  * make an offer is partially completed
+      - offer scope (dates from/to) could be setup
+      - offer could be done by buyer
+      - offer could be accepted/rejected by seller
+
+      After that reservation is made (could be shown in seller cart, or sent by email)
+
+ -- Evgeny Zhoga <ezhoga@gmail.com>  Fri, 30 Oct 2015 20:12:00 +0200
+
+nichoshop-backend (1.0-10) testing; urgency=autodeploy
+
+  * - auction feature was added
+
+ -- Evgeny Zhoga <ezhoga@gmail.com>  Sun, 18 Oct 2015 23:35:00 +0200
+
+nichoshop-backend (1.0-9) testing; urgency=autodeploy
+
+  * - Purchase process was setup
+
+ -- Evgeny Zhoga <ezhoga@gmail.com>  Thu, 24 Sep 2015 15:30:00 +0200
+
+nichoshop-backend (1.0-8) testing; urgency=autodeploy
+
+  * - huge update of frontend pages with backend support
+
+ -- Evgeny Zhoga <ezhoga@gmail.com>  Wed, 16 Sep 2015 18:14:00 +0200
+
+nichoshop-backend (1.0-7) testing; urgency=autodeploy
+
+  * - Updated products list,
+    - Added customer cart support
+    - "Buy it now" step one
+
+ -- Evgeny Zhoga <ezhoga@gmail.com>  Sun, 6 Sep 2015 20:57:00 +0200
+
+nichoshop-backend (1.0-6) testing; urgency=autodeploy
+
+  * changes on supporting products and categories
+
+ -- Evgeny Zhoga <ezhoga@gmail.com>  Sun, 30 Aug 2015 19:09:00 +0200
+
+nichoshop-backend (1.0-5) testing; urgency=autodeploy
+
+  * Issue #1: Move application to standard ports
+    Issue #2: Fix startup script
+
+ -- Evgeny Zhoga <ezhoga@gmail.com>  Sun, 16 Aug 2015 16:47:00 +0200
+
+nichoshop-backend (1.0-4) testing; urgency=autodeploy
+
+  * Sprint-2: Changes related to categories management,
+    added Frontend pages.
+
+ -- Evgeny Zhoga <ezhoga@gmail.com>  Mon, 6 Jul 2015 22:42:00 +0200
+
+nichoshop-backend (1.0-3) testing; urgency=autodeploy
+
+  * Sprint-2: SSL setup,
+    changes on slick classes. Admin categories.
+
+ -- Evgeny Zhoga <ezhoga@gmail.com>  Tue, 3 Jul 2015 17:41:00 +0200
+
+nichoshop-backend (1.0-2) testing; urgency=autodeploy
+
+  * Fixes for sprint-1
+
+ -- Evgeny Zhoga <ezhoga@gmail.com>  Tue, 16 Jun 2015 22:34:00 +0200
+
+nichoshop-backend (1.0-1) testing; urgency=autodeploy
+
+  * Version based on sprint-1
+
+ -- Evgeny Zhoga <ezhoga@gmail.com>  Tue, 16 Jun 2015 6:14:00 +0200
+
+nichoshop-backend (1.0-0) testing; urgency=autodeploy
+
+  * initial version
+
+ -- Evgeny Zhoga <ezhoga@gmail.com>  Wed, 10 Jun 2015 11:35:00 +0200

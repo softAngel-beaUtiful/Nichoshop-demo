@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" ng-app="nichoshopApp">
+<head>
+    <meta charset="utf-8">
+    <title>My HTML File</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/vendor/jquery/toastr/css/toastr.css">
+    <link rel="stylesheet" href="/vendor/bootstrap/css/signin.css">
+    <link rel="stylesheet" href="/css/nichoshop.css">
+    <link rel="stylesheet" href="../lib/css/angular-ui-tree.css">
+
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/angular/angular.js"></script>
+
+    <script src="../js/nichoshopApp.js"></script>
+    <script src="../js/adminCategoriesController.js"></script>
+    <script src="/vendor/jquery/toastr/js/toastr.js"></script>
+
+    <script src="../lib/js/angular-ui-tree.js"></script>
+</head>
+<body ng-controller="adminCategoriesController">
+<div ng-include="'navigation.html'"></div>
+
+<div style="position: relative; top: 40px;">
+    <div class="span6" style="display:inline-block;">
+        <div ui-tree="options">
+            <ol ui-tree-nodes ng-model="categories.data" >
+                <li ng-repeat="item in categories.data" ui-tree-node ng-include="'items_renderer.html'"></li>
+            </ol>
+        </div>
+    </div>
+    <div class="span6">&nbsp;</div>
+</div>
+
+<script type="text/ng-template" id="items_renderer.html">
+    <div ui-tree-handle>
+        <a class="btn btn-success btn-xs" data-nodrag ng-click="toggle(this)"><span class="glyphicon" ng-class="{'glyphicon-chevron-right': collapsed, 'glyphicon-chevron-down': !collapsed}"></span></a>
+        {{item.category.name}}
+        <a class="pull-right btn btn-danger btn-xs" data-nodrag ng-click="remove(this)"><span class="glyphicon glyphicon-remove"></span></a>
+        <a class="pull-right btn btn-primary btn-xs" data-nodrag ng-click="newSubItem(this)" style="margin-right: 8px;"><span class="glyphicon glyphicon-plus"></span></a>
+    </div>
+    <ol ui-tree-nodes="options" ng-model="item.children" ng-class="{hidden: collapsed}">
+        <li ng-repeat="item in item.children" ui-tree-node ng-include="'items_renderer.html'">
+        </li>
+    </ol>
+</script>
+
+</body>
+</html>

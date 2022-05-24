@@ -1,0 +1,295 @@
+[
+  {
+    "namespace": "com.nichoshop.model.dto",
+    "type": "record",
+    "name": "RichMoneyDto",
+    "fields": [
+      {
+        "name": "currencyId",
+        "type": "int"
+      },
+      {
+        "name": "amount",
+        "type": "int"
+      }
+    ]
+  },
+  {
+    "namespace": "com.nichoshop.model.dto",
+    "type": "record",
+    "name": "ProductAttributeOptionsDto",
+    "fields": [
+      {"name": "options", "type": {"type": "array", "items": "string"}}
+    ]
+  },
+  {
+    "namespace": "com.nichoshop.model.dto",
+    "type": "enum",
+    "name": "ProductAttributeType",
+    "symbols": ["STRING", "INTEGER", "UNSIGNED_INTEGER0", "UNSIGNED_INTEGER1", "ENUM"]
+  },
+  {
+    "namespace": "com.nichoshop.model.dto",
+    "type": "record",
+    "name": "ProductAttributeDto",
+    "fields": [
+      {"name": "id", "type": "int"},
+      {"name": "categoryId", "type": "int"},
+      {"name": "name", "type": "string"},
+      {"name": "valueType", "type": "ProductAttributeType", "default": "STRING"},
+      {"name": "valueOptions", "type": ["null", "ProductAttributeOptionsDto"], "default": null},
+      {"name": "defaultValue", "type": ["null", "string"], "default": null},
+      {"name": "isMultivariation", "type": "boolean", "default": false}
+    ]
+  },
+  {
+    "namespace": "com.nichoshop.model.dto",
+    "type": "record",
+    "name": "OfferDto",
+    "fields": [
+      {
+        "name": "id",
+        "type": "int"
+      },
+      {
+        "name": "userId",
+        "type": "int"
+      },
+      {
+        "name": "created",
+        "type": "long"
+      },
+      {
+        "name": "pricePerItem",
+        "type": "RichMoneyDto"
+      },
+      {
+        "name": "qty",
+        "type": "int"
+      },
+      {
+        "name": "accepted",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "rejected",
+        "type": "boolean",
+        "default": false
+      },
+      {
+        "name": "message",
+        "type": ["null", "string"],
+        "default": null
+      }
+    ]
+  },
+  {
+    "namespace": "com.nichoshop.model.dto",
+    "type": "record",
+    "name": "OfferScopeDto",
+    "fields": [
+      {
+        "name": "id",
+        "type": "int"
+      },
+      {
+        "name": "start",
+        "type": "long"
+      },
+      {
+        "name": "end",
+        "type": ["null", "long"],
+        "default": null
+      },
+      {
+        "name": "offers",
+        "type": ["null", {
+          "type": "array",
+          "items": "OfferDto"
+        }],
+        "default": null
+      }
+    ]
+  },
+  {
+    "namespace": "com.nichoshop.model.dto",
+    "type": "enum",
+    "name": "ProductCondition",
+    "symbols": ["NEW", "USED"]
+  },
+  {
+    "namespace": "com.nichoshop.model.dto",
+    "type": "record",
+    "name": "ProductVariantDto",
+    "fields": [
+      {
+        "name": "id",
+        "type": ["null", "int"],
+        "default": null
+      },
+      {
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "name": "description",
+        "type": "string"
+      },
+      {
+        "name": "created",
+        "type": "long"
+      },
+      {
+        "name": "price",
+        "type": "RichMoneyDto"
+      },
+      {
+        "name": "amount",
+        "type": "int"
+      },
+      {
+        "name": "condition",
+        "type": "ProductCondition",
+        "default": "NEW"
+      },
+      {
+        "name": "offerScopes",
+        "type": ["null", {
+          "type":"array",
+          "items":"OfferScopeDto"
+        }],
+        "default": null
+      }
+    ]
+  },
+  {
+    "namespace": "com.nichoshop.model.dto",
+    "type": "record",
+    "name": "ProductDto",
+    "fields": [
+      {
+        "name": "id",
+        "type": ["null", "int"],
+        "default": null
+      },
+      {
+        "name": "categoryId",
+        "type": "int"
+      },
+      {
+        "name": "sellerId",
+        "type": "int"
+      },
+      {
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "name": "description",
+        "type": "string"
+      },
+      {
+        "name": "created",
+        "type": "long"
+      },
+      {
+        "name": "variants",
+        "type": {
+          "type": "array",
+          "items": "ProductVariantDto"
+        }
+      }
+    ]
+  },
+  {
+    "namespace": "com.nichoshop.model.dto",
+    "type": "record",
+    "name": "CartItemDto",
+    "fields": [
+      {
+        "name": "product",
+        "type": ["null", "ProductDto"],
+        "default": null
+      },
+      {
+        "name": "qty",
+        "type": "int",
+        "default": 1
+      }
+    ]
+  },
+  {
+    "namespace": "com.nichoshop.model.dto",
+    "type": "record",
+    "name": "CartDto",
+    "fields": [
+      {
+        "name": "items",
+        "type": ["null", {
+          "type": "array",
+          "items": "CartItemDto"
+        }],
+        "default": null
+      }
+    ]
+  },
+  {
+    "namespace": "com.nichoshop.model.dto",
+    "type": "record",
+    "name": "AuctionAttendieDto",
+    "fields": [
+      {
+        "name": "userId",
+        "type": "int"
+      },
+      {
+        "name": "maxBid",
+        "type": "RichMoneyDto"
+      },
+      {
+        "name": "timestamp",
+        "type": "long"
+      }
+    ]
+  },
+  {
+    "namespace": "com.nichoshop.model.dto",
+    "type": "record",
+    "name": "AuctionDto",
+    "fields": [
+      {
+        "name": "id",
+        "type": "int"
+      },
+      {
+        "name": "product",
+        "type": "ProductDto"
+      },
+      {
+        "name": "currentPrice",
+        "type": "RichMoneyDto"
+      },
+      {
+        "name": "winner",
+        "type": ["null", "AuctionAttendieDto"],
+        "default": null
+      },
+      {
+        "name": "startAt",
+        "type": "long"
+      },
+      {
+        "name": "finishAt",
+        "type": "long"
+      },
+      {
+        "name": "attendies",
+        "type": ["null", {
+          "type": "array",
+          "items": "AuctionAttendieDto"
+        }]
+      }
+    ]
+  }
+]

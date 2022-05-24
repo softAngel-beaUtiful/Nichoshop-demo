@@ -1,0 +1,408 @@
+body{
+	background-color: #F6F6F6;
+	margin:0;
+	padding:0;
+	height:100%;
+}
+
+.main-wrapper{
+	min-height:100%;
+	position:relative;
+}
+
+.header{
+	height:100px;
+	width:100%;
+	margin-bottom:50px;
+	padding:30px 50px 0 50px;
+	background-color: #F6F6F6;
+	overflow:hidden;
+}
+
+.header h2{
+	display:inline;
+	margin-left:20px;
+	margin-top:100px;
+	padding-top:100px;
+}
+
+.content{
+	padding-bottom:100px; /* Height of the footer element + margin*/
+}
+
+.footer{
+	height:60px;
+	width:100%;
+	margin-top:40px;
+	padding:0 200px;
+	border-top:1px solid #CCC;
+	background-color: #F6F6F6;
+	position:absolute;
+	bottom:0;
+	left:0;
+}
+
+/* Login */
+.login-container {
+	width:700px;
+	padding:20px 50px 10px 50px;
+	border: 1px solid #DDD;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	-webkit-box-shadow: 0 5px 5px -1px #C4C4C4;
+	box-shadow: 0 5px 5px -1px #C4C4C4;
+	background-color: white;
+	clear:both;
+	overflow: hidden;
+}
+.login-container.spall-container {
+	width:450px;
+}
+
+.login-container h3{
+	margin-top:0;
+}
+
+.login-container .login-msg-box{
+	color: #a94442;
+	margin-bottom:15px;
+	display: none;
+}
+
+.login-container .login-msg-box img{
+	width: 25px;
+	height: 25px;
+}
+
+.login-container h3{
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+
+.login-container .login-username{
+	width:350px;
+}
+
+.login-container .login-password{
+	width:350px;
+	margin-top:25px;
+}
+
+.login-container .password-recover-button{
+	margin-left:200px;
+}
+
+.login-container .checkbox{
+	margin-top:0;
+	margin-bottom: 20px;
+}
+
+.login-container .checkbox label{
+	width:120px;
+}
+
+.login-container #login-button{
+	margin-top:20px;
+}
+
+.login-container .login-button{
+	padding: 6px 20px;
+	clear: both;
+}
+
+.login-container .inner-right-container{
+	margin-top:20px;
+	margin-left:370px;
+}
+.login-container.spall-container .inner-right-container{
+	margin-left:145px;
+}
+
+.login-container .inner-right-container a {
+	padding-left: 5px;
+	color: #a94442;
+}
+.login-container .register-agreement-label{
+	font-weight: bold;
+}
+.login-container .register-agreement-options{
+	font-size: 0.9em;
+	padding-left:20px;
+}
+
+.footer .ssl-certificate{
+	height:55px;
+	float:right;
+}
+
+.footer .copyright{
+	margin-top:20px;
+	color:#727272;
+}
+.register-error-msg-box{
+	display:none;
+	color: #a94442;
+}
+.has-error .register-error-msg-box{
+	display:block;
+}
+.register-error-msg-header-box{
+	min-height:80px;
+	padding-top:10px;
+	margin-bottom:20px;
+	border: 1px solid #DDD;
+	border-top-color: #a94442;
+	border-top-width: 3px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	background-color: white;
+	display:none;
+}
+.register-error-msg-header-box img{
+	height:50px;
+	width:50px;
+	margin-left:10px;
+	float: left;
+}
+.register-error-msg-header-box div{
+	color: #a94442;
+	margin-left:75px;
+	font-size: 1.2em;
+}
+.register-error-msg-header-box ul{
+	color:#0654D0;
+	margin-left:50px;
+	margin-top:5px;
+}
+.register-success-msg-header-box{
+	min-height:80px;
+	padding-top:10px;
+	margin-bottom:20px;
+	border: 1px solid #DDD;
+	border-top-color: #3c763d;
+	border-top-width: 3px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	background-color: white;
+}
+.register-success-msg-header-box img{
+	height:50px;
+	width:50px;
+	margin-left:10px;
+	float: left;
+}
+.register-success-msg-header-box div.register-success-msg-title{
+	color: #3c763d;
+	margin-left:75px;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+.register-success-msg-header-box div{
+	margin-left:75px;
+}
+
+/* Password recovery */
+.password-recovery-container{
+	width:700px;
+	padding:20px 50px 35px 50px;
+	border: 1px solid #DDD;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	-webkit-box-shadow: 0 5px 5px -1px #C4C4C4;
+	box-shadow: 0 5px 5px -1px #C4C4C4;
+	background-color: white;
+	margin-left:80px;
+}
+
+.password-recovery-email{
+	width:350px;
+	margin-top:25px;
+	margin-bottom:25px;
+}
+#password-recovery-email-submit-button{
+	margin-top:25px;
+}
+.password-recovery-alternatives-container{
+	padding:50px;
+	padding-bottom:10px;
+	margin-left:80px;
+}
+.password-recovery-alternatives-container ul{
+	padding-top:5px;
+	padding-left:15px;
+}
+
+.password-recovery-types-container{
+	margin-left:40px;
+}
+
+#password-recovery-pin{
+	width:120px;
+	margin-top:25px;
+	margin-bottom:25px;
+}
+
+.password-recovery-types-container .password-recovery-type-container{
+	width:300px;
+	height:200px;
+	padding-top:30px;
+	float:left;
+	margin-top:20px;
+	margin-left:60px;
+	border: 1px solid #DDD;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	-webkit-box-shadow: 0 5px 5px -1px #C4C4C4;
+	box-shadow: 0 5px 5px -1px #C4C4C4;
+	background-color: white;
+	text-align: center;
+	display:none;
+}
+.password-recovery-types-container .password-recovery-type-container .password-recover-img{
+	width:50px;
+	height:50px;
+	margin:0 auto;
+	background-image: url('../images/password-recover-options.png');
+	cursor:pointer;
+}
+.password-recovery-types-container .password-recovery-type-container .password-recover-img-mail{
+	background-position:0 0;
+}
+.password-recovery-types-container .password-recovery-type-container .password-recover-img-mail:hover{
+	background-position:0 -50px;
+}
+.password-recovery-types-container .password-recovery-type-container .password-recover-img-mail:active{
+	background-position:0 -100px;
+}
+.password-recovery-types-container .password-recovery-type-container .password-recover-img-sms{
+	background-position:-50px 0;
+}
+.password-recovery-types-container .password-recovery-type-container .password-recover-img-sms:hover{
+	background-position:-50px -50px;
+}
+.password-recovery-types-container .password-recovery-type-container .password-recover-img-sms:active{
+	background-position:-50px -100px;
+}
+.password-recovery-types-container .password-recovery-type-container .password-recover-img-call{
+	background-position:-100px 0;
+}
+.password-recovery-types-container .password-recovery-type-container .password-recover-img-call:hover{
+	background-position:-100px -50px;
+}
+.password-recovery-types-container .password-recovery-type-container .password-recover-img-call:active{
+	background-position:-100px -100px;
+}
+
+.password-recovery-types-container .password-recovery-type-container span{
+	color:#666;
+}
+.password-recovery-agreement-msg{
+	color:#666;
+	font-size: 0.8em;
+	margin-left:120px;
+	display:none;
+}
+.password-recovery-enter-pin-container{
+	display:none;
+}
+
+.password-recovery-new-passwords-container{
+	display:none;
+}
+.password-recovery-new-passwords-container label{
+	margin-top:25px;
+	font-weight: normal;
+}
+
+.password-recovery-new-passwords-container #password-recovery-new-passwords-submit-button{
+	margin-top:40px;
+}
+.password-recovery-email-link-container{
+	display: none;
+}
+.password-recovery-email-link-container ul{
+	list-style-type: none;
+	padding-left: 0px;
+}
+.password-recovery-email-link-container ul li{
+	margin-top: 10px;
+}
+.password-recovery-email-link-container ul li img{
+	width:30px;
+	margin-right: 10px;
+}
+
+@media screen and (max-width: 800px) {
+    
+/* Login / Register */
+body{
+}
+
+.login-container {
+	width:90%;
+	padding:1em 2em 1em 2em;
+}
+
+.login-container .login-username{
+	width:100%;
+}
+
+.login-container .login-password{
+	width:100%;
+}
+
+.login-container .password-recover-button{
+	margin:0 auto;
+}
+
+.login-container .inner-right-container{
+	margin-left:0;
+	float: right;
+}
+
+.header{
+	height:75px;
+	margin-bottom:25px;
+	padding:30px 50px 0 50px;
+}
+
+.footer{
+	padding:0 20px;
+}
+/*
+.footer .ssl-certificate{
+	height:80px;
+}
+
+.footer .copyright{
+	margin-top:20px;
+}*/
+
+
+
+
+/* Password Recovery */
+.password-recovery-container{
+	width:90%;
+	padding:1em 2em 1em 2em;
+	margin-left:auto;
+}
+.password-recovery-container .password-recovery-email{
+	width:100%;
+}
+.password-recovery-alternatives-container{
+	margin-left:auto;
+}
+.password-recovery-types-container{
+	margin-left:10px;
+}
+.password-recovery-types-container .password-recovery-type-container{
+	width:180px;
+	height:150px;
+	overflow:hidden;
+	margin-left:10px;
+}
+
+
+
+}

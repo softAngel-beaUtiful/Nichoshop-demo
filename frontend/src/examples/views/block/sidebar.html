@@ -1,0 +1,11 @@
+<ul class="sidebar-nav">
+    <li ng-repeat="category in sidebar.data" ng-mouseleave="sidebar.lastId = false">
+        <div  class="dropdown">
+            <a click-prevent="true" ng-click="sidebar.setCategory(category.category.id)" ng-mouseover="sidebar.lastId = 'category_' + category.category.id" href="#" class="dropdown-toggle text-nowrap" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id="category_{{category.category.id}}">{{ category.category.name }} <span class="caret"></span></a>
+            <ul ng-class=" {true: 'toggled' , false: 'dropdown-menu'}[sidebar.lastId == 'category_' + category.category.id]" role="menu" aria-labelledby="category_{{category.category.id}}">
+                <li ng-repeat="child in category.children"><a click-prevent="true" ng-click="sidebar.setCategory(child.category.id)" href="#" class="text-nowrap">{{child.category.name}}</a></li>
+            </ul>
+        </div>
+    </li>
+
+</ul>

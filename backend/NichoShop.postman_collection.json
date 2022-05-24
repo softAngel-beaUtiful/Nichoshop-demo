@@ -1,0 +1,165 @@
+{
+	"info": {
+		"_postman_id": "d1246c05-7abb-4d26-ac7a-f01811f96b60",
+		"name": "NichoShop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"vnavozenko+test4@gmail.com\",\n  \"grecaptcha\": \"string\",\n  \"fname\": \"val\",\n  \"userid\": \"vnavozenko_test4\",\n  \"accountType\": \"PERSONAL\",\n  \"lname\": \"test\",\n  \"password\": \"123asd123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login - Base Auth",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123asd123",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "persona@test.com",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "rememberMe",
+							"value": "true",
+							"type": "text"
+						},
+						{
+							"key": "grecaptcha",
+							"value": "12345",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:9090/sessions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"sessions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login - Username/Password",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/sessions/login?login=persona@test.com&password=123asd123&grecaptcha=123452&rememberMe=true",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"sessions",
+						"login"
+					],
+					"query": [
+						{
+							"key": "login",
+							"value": "persona@test.com"
+						},
+						{
+							"key": "password",
+							"value": "123asd123"
+						},
+						{
+							"key": "grecaptcha",
+							"value": "123452"
+						},
+						{
+							"key": "rememberMe",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login - Username/Password 2FA",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/api/v1/admin/auth/login-with-prompt?login=vnavozenko@gmail.com&password=123asd123&rememberMe=true&grecaptcha=123456",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"v1",
+						"admin",
+						"auth",
+						"login-with-prompt"
+					],
+					"query": [
+						{
+							"key": "login",
+							"value": "vnavozenko@gmail.com"
+						},
+						{
+							"key": "password",
+							"value": "123asd123"
+						},
+						{
+							"key": "rememberMe",
+							"value": "true"
+						},
+						{
+							"key": "grecaptcha",
+							"value": "123456"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

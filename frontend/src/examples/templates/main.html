@@ -1,0 +1,72 @@
+<div id="wrapper">
+
+    <!-- Sidebar user-space-->
+    <div class="sidebar-wrapper" ng-if="currentArea == areas.userSpace">
+        <ul class="sidebar-nav">
+            <li ng-repeat="category in sidebar.data" ng-mouseleave="sidebar.lastId = false">
+                <div  class="dropdown">
+                    <a click-prevent="true" ng-click="setCentral(centrals.user.inventory.listProducts, category.category.id)" ng-mouseover="sidebar.lastId = 'category_' + category.category.id" href="#" class="dropdown-toggle text-nowrap" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" id="category_{{category.category.id}}">{{ category.category.name }} <span class="caret"></span></a>
+                    <ul ng-class=" {true: 'toggled' , false: 'dropdown-menu'}[sidebar.lastId == 'category_' + category.category.id]" role="menu" aria-labelledby="category_{{category.category.id}}">
+                        <li ng-repeat="child in category.children"><a click-prevent="true" ng-click="setCentral(centrals.user.inventory.listProducts, child.category.id)" href="#" class="text-nowrap">{{child.category.name}}</a></li>
+                    </ul>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+    <!-- Sidebar admin-space-->
+    <div class="sidebar-wrapper" ng-if="currentArea == areas.adminSpace && sidebar == 'inventory'">
+        <ul class="sidebar-nav">
+            <li><a href="#" click-prevent="true" ng-click="setCentral(centrals.admin.inventory.createProduct)">Create new Product</a></li>
+            <li><a href="#" click-prevent="true" ng-click="setCentral(centrals.admin.inventory.listProducts)">List products</a></li>
+        </ul>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div style="" id="page-content-wrapper">
+        <div style="" class="container-fluid">
+            <div style="" class="row">
+
+                <div style="" class="col-lg-12" ng-if="currentCentral.name == ''">
+                    <h1 style="">Simple Sidebar</h1>
+                    <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
+                    <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
+                    <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                </div>
+
+                <div style="" class="col-lg-10" ng-if="currentArea == areas.adminSpace && currentCentral.name == centrals.admin.inventory.createProduct.name">
+                    <h1 style="">Inventory -> create product</h1>
+
+                    <div ng-include="'templates/createProduct.html'"></div>
+                </div>
+                <div style="" class="col-lg-12" ng-if="currentArea == areas.adminSpace && currentCentral.name == centrals.admin.inventory.listProducts.name">
+                    <h1 style="">Inventory -> list of products</h1>
+
+                    <div ng-include="'templates/listProducts.html'"></div>
+                </div>
+
+                <div style="" class="col-lg-12" ng-if="currentArea == areas.userSpace && currentCentral.name == centrals.user.inventory.listProducts.name">
+                    <h1 style="">Inventory -> list of products for category</h1>
+
+                    <div ng-include="'templates/listCustomerProducts.html'"></div>
+                </div>
+
+                <div style="" class="col-lg-12" ng-if="currentArea == areas.userSpace && currentCentral.name == centrals.user.inventory.buyItNowStep1.name">
+                    <h1 style="">Buy it now</h1>
+
+                    <div ng-include="'templates/buyItNowStep1.html'"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+    <script>
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+</div>

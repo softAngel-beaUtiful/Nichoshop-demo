@@ -1,0 +1,30 @@
+version: '3.1'
+
+services:
+
+  memcached:
+    image: memcached:latest
+    restart: always
+    ports:
+      - "11211:11211"
+    environment:
+      - MEMCACHED_CACHE_SIZE=264
+      - MEMCACHED_MAX_CONNECTIONS=2000
+#      - MEMCACHED_USERNAME=nichoshop
+#      - MEMCACHED_PASSWORD=YjBlYzc1NmE2OGQxODViNTgwYzE1Nzcz
+
+  db:
+    image: mysql:5.7.32
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: dev
+      MYSQL_DATABASE: nichoshop
+
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    restart: always
+    ports:
+      - "9091:8080"

@@ -1,0 +1,8 @@
+[0m[[0m[0minfo[0m] [0m[0mAvro compiler 1.10.2 using stringType=String[0m
+[0m[[0m[0minfo[0m] [0m[0mCompiling Avro schemas E:\Github\nichoshop-demo\backend\src\main\avro\com.nichoshop.model\CategoryTree.avsc[0m
+[0m[[0m[0minfo[0m] [0m[0mCompiling Avro schemas E:\Github\nichoshop-demo\backend\src\main\avro\com.nichoshop.model\Login.avsc[0m
+[0m[[0m[0minfo[0m] [0m[0mCompiling Avro schemas E:\Github\nichoshop-demo\backend\src\main\avro\com.nichoshop.model\Message.avsc[0m
+[0m[[0m[0minfo[0m] [0m[0mCompiling Avro schemas E:\Github\nichoshop-demo\backend\src\main\avro\com.nichoshop.model\Product.avsc[0m
+[0m[[0m[0minfo[0m] [0m[0mCompiling Avro schemas E:\Github\nichoshop-demo\backend\src\main\avro\com.nichoshop.model\Session.avsc[0m
+[0m[[0m[0minfo[0m] [0m[0mCompiling Avro schemas E:\Github\nichoshop-demo\backend\src\main\avro\com.nichoshop.model\Token.avsc[0m
+[0m[[0m[0minfo[0m] [0m[0mCompiling Avro schemas E:\Github\nichoshop-demo\backend\src\main\avro\com.nichoshop.model\User.avsc[0m

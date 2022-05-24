@@ -1,0 +1,171 @@
+<div id="wrapper">
+    <div ng-include="'views/block/userNavigation.html'"></div>
+
+    <div ng-include="'views/admin/sidebar.html'"></div>
+
+    <div id="page-content-wrapper">
+        <div class="ns-admin manage-categories blocks  col-md-12">
+            <div class="ns-admin manage-categories left-block clearfix col-md-5">
+                <div class="inner-block">
+                <div class="category-path">
+                    <div ng-repeat="o in cl.c1.categories" class="category-path-element"> / <a href="#" click-prevent="true" ng-click="cl.c1.chooseCategory(o.id); cl.getAttributes(o.id)">{{ o.name }}</a></div>
+                </div>
+
+                <div ng-repeat="o in cl.c1.currentChildren">
+                    <h5><a href="#" click-prevent="true" ng-click="cl.c1.chooseSubCategory(o.category.id); cl.getAttributes(o.category.id)">{{ "+ " +
+                        o.category.name }}</a></h5>
+                </div>
+                </div>
+            </div>
+            <div class="ns-admin manage-categories right-block clearfix col-md-6">
+                <div class="inner-block">
+                    <a class="btn btn-success" click-prevent="true" ng-click="cl.addCategoryModal()">Add Category</a>
+                    <div ng-if="cl.c1.categories.length > 1">
+                        <h4>{{cl.c1.currentCategory.name}}<a class="btn btn-warning pull-right" click-prevent="true" ng-click="cl.chooseAnotherParentModal()">Assign another parent</a></h4>
+                        <a class="btn btn-danger" click-prevent="true" ng-click="cl.removeCategory()">Remove Category</a>
+
+                        <div class="rounded-block" style="margin-top: 22px;"><div class="inner-block">
+                            <h5>Item specifics</h5>
+
+                            <div ng-if="cl.c1.currentCategory.id == cl.attributes.categoryId">
+                                <div ng-repeat="attr in cl.attributes.data">
+                                    <!--<b>{{($index + 1) + '. ' + attr.name + ' (' + attr.valueOptions.join(', ') + ') '}}</b><span ng-if="attr.categoryId != cl.attributes.categoryId">&nbsp;<i>(from parent)</i></span>&nbsp;&nbsp;<a click-prevent="true" ng-click="cl.removeAttribute(attr.id)"><i class="fa fa-times"></i></a>-->
+                                    <b>{{($index + 1) + '. '}}<a click-prevent="true" ng-click="cl.addAttributeOpenModal(attr)">{{attr.name}}</a>{{ ' (' + attr.valueOptions.join(', ') + ') '}}</b><span ng-if="attr.categoryId != cl.attributes.categoryId">&nbsp;<i>(from parent)</i></span>&nbsp;&nbsp;<a click-prevent="true" ng-click="cl.removeAttribute(attr.id)"><i class="fa fa-times"></i></a>
+                                </div>
+                            </div>
+                            <br>
+                            <a class="btn btn-success" click-prevent="true" ng-click="cl.addAttributeOpenModal()">Add attribute</a>
+                        </div></div>
+                        <br>
+                        <div ng-if="cl.c1.currentCategory.conditionType">
+                            <!-- condition assigned to category -->
+                            <h5>Condition options</h5>
+                            <div ng-repeat="o in cl.cc.options(cl.c1.currentCategory.conditionType)">
+                                <b>{{o}}</b>
+                            </div>
+
+                        </div>
+
+                        <a class="btn btn-success" ng-click="cl.assignConditionTypeOpenModal()" click-prevent="true">Assign condition type</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/ng-template" id="addAttribute.html">
+        <div class="modal-header">
+            <h3 class="modal-title" ng-if="cl.attribute.id">Update Attribute</h3>
+            <h3 class="modal-title" ng-if="!cl.attribute.id">Add Attribute</h3>
+        </div>
+
+        <div class="modal-body">
+            <form name="addAttributeForm">
+                <label for="name">Name</label>
+                <input type="text" id="name" class="form-control" placeholder="Attribute name" ng-model="cl.attribute.name"
+                       autofocus required>
+
+                <input type="hidden" ng-model="cl.attribute.attributeType" value="ENUM" />
+<!--
+                <label for="type" class="sr-only">Type</label>
+                <select id="type" class="form-control" ng-model="cl.attribute.attributeType">
+                    <option value="STRING" selected>String</option>
+                    <option value="INTEGER">Signed integer</option>
+                    <option value="UNSIGNED_INTEGER0">Unsigned integer starting with 0</option>
+                    <option value="UNSIGNED_INTEGER1">Unsigned integer starting with 1</option>
+                    <option value="ENUM">Set of values</option>
+                </select>
+-->
+
+                <div class="rounded-block" ng-if="cl.attribute.attributeType == 'ENUM'"><div class="inner-block">
+                    <h5> Options</h5>
+                    <div ng-repeat="option in cl.attribute.options">
+                        <input type="text" class="form-control" ng-model="option.v" required>
+                        <a click-prevent="true" ng-click="cl.removeOption()"><i class="fa fa-minus"></i></a>
+                    </div>
+                    <a click-prevent="true" ng-click="cl.addOption()"><i class="fa fa-plus"></i>&nbsp;Add Option</a>
+                </div></div>
+
+                <label for="defaultValue">Default Value</label>
+                <select ng-if="cl.attribute.attributeType == 'ENUM'" id="defaultValue" class="form-control" ng-model="cl.attribute.defaultValue">
+                    <option ng-repeat="o in cl.attribute.options" value="{{o.v}}" ng-selected="o.v == cl.attribute.defaultValue">{{o.v}}</option>
+                </select>
+                <!--<input type="text" ng-if="cl.attribute.attributeType != 'ENUM'" id="defaultValue" class="form-control" ng-model="cl.attribute.defaultValue" placeholder="Default value">-->
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-if="cl.attribute.id" ng-click="cl.ok()" ng-disabled="!cl.attribute.options && addAttributeForm.$invalid">Update attribute</button>
+            <button class="btn btn-primary" type="button" ng-if="!cl.attribute.id" ng-click="cl.ok()" ng-disabled="!cl.attribute.options && addAttributeForm.$invalid">Add attribute</button>
+            <button class="btn btn-warning" type="button" ng-click="cl.cancel()">Cancel</button>
+        </div>
+
+    </script>
+
+    <script type="text/ng-template" id="assignConditionType.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Assign Condition type</h3>
+        </div>
+
+        <div class="modal-body">
+            <form name="assignConditionTypeForm">
+                <select class="form-control" ng-model="cl.cc.data">
+                    <option value="" ng-selected="!cl.cc.data">No condition</option>
+                    <option ng-repeat="conditionType in cl.cc.types" value="{{conditionType.id}}" ng-selected="cl.cc.data == conditionType.id">{{conditionType.name}}</option>
+                </select>
+
+                <div ng-repeat="o in cl.cc.options()">
+                    <b>{{o}}</b>
+                </div>
+
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="cl.assignConditionType()" ng-disabled="assignConditionTypeForm.$invalid">Assign condition type</button>
+            <button class="btn btn-warning" type="button" ng-click="cl.cancel()">Cancel</button>
+        </div>
+
+    </script>
+
+    <script type="text/ng-template" id="chooseAnotherParent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Choose another parent</h3>
+        </div>
+
+        <div class="modal-body">
+            <form name="chooseAnotherParentForm">
+                <div class="inner-block">
+                    <div class="category-path">
+                        <div ng-repeat="o in cl.c2.categories" class="category-path-element"> / <a href="#" click-prevent="true" ng-click="cl.c2.chooseCategory(o.id); cl.getAttributes(o.id)">{{ o.name }}</a></div>
+                    </div>
+
+                    <div ng-repeat="o in cl.c2.currentChildren">
+                        <h5><a href="#" click-prevent="true" ng-click="cl.c2.chooseSubCategory(o.category.id); cl.getAttributes(o.category.id)">{{ "+ " +
+                            o.category.name }}</a></h5>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="cl.chooseAnotherParentSubmit()">Choose another parent</button>
+            <button class="btn btn-warning" type="button" ng-click="cl.cancel()">Cancel</button>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="addCategory.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Add category</h3>
+        </div>
+
+        <div class="modal-body">
+            <form name="addCategoryForm">
+                <input type="text" class="form-control" ng-model="cl.newCategory.name" placeholder="Name" required>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="cl.addCategoryOk()" ng-disabled="addCategoryForm.$invalid">Add category</button>
+            <button class="btn btn-warning" type="button" ng-click="cl.cancel()">Cancel</button>
+        </div>
+
+    </script>
+</div>

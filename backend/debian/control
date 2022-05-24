@@ -1,0 +1,11 @@
+Source: nichoshop-backend
+Section: nichoshop
+Priority: optional
+Maintainer: Evgeny Zhoga <ezhoga@gmail.com>
+Build-Depends: oracle-java8-installer, debhelper (>= 4.0.0)
+Standards-Version: 3.6.1
+
+Package: nichoshop-backend
+Architecture: all
+Depends: oracle-java8-installer
+Description: nichoshop-backend

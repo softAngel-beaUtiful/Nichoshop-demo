@@ -1,0 +1,38 @@
+<div class="ns-product span12">
+    <table class="ns-product-item">
+        <tr>
+            <td colspan="2"><h4 class="ns-title">{{ buyItNow.data.title }}</h4></td>
+        </tr>
+        <tr>
+            <td rowspan="3" class="col-md-3">
+                <img class="ns-image" ng-src="{{buyItNow.data.image}}">
+            </td>
+            <td class="col-md-9"> {{ buyItNow.data.description }}</td>
+        </tr>
+        <tr>
+            <td>Price:
+                <div class="ns-price">{{ buyItNow.data.price }}</div>
+            </td>
+        </tr>
+        <tr>
+            <td> Something will be here</td>
+        </tr>
+        <tr>
+            <td> Something will be here also</td>
+            <td> And here as well</td>
+        </tr>
+        <tr>
+            <td>
+                <a click-prevent="true"
+                   ng-click="setCentral(centrals.user.inventory.listProducts, buyItNow.categoryId)"
+                   class="btn btn-success left ns-add-to-card">Cancel</a>
+            </td>
+            <td>
+                <a click-prevent="true"
+                         ng-click="buyItNow.buyItNow(buyItNow.data.id, buyItNow.data.variants[0].id)"
+                         class="btn btn-success pull-right ns-add-to-card">Continue</a>
+            </td>
+        </tr>
+    </table>
+
+</div>

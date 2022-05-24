@@ -1,0 +1,34 @@
+<form class="form-signin" name="registrationForm">
+    <h2 class="form-signin-heading">Please register</h2>
+    <!--<div class="alert alert-info" role="alert" ng-if="registrationForm.$pending.usernameExists">checking....</div>-->
+    <div class="alert alert-danger" role="alert" ng-if="registrationForm.$error.usernameExists || registrationForm.$error.emailExists">
+        <div ng-if="registrationForm.$error.usernameExists">Username exists already</div>
+        <div ng-if="registrationForm.$error.emailExists">Email exists already</div>
+    </div>
+    <div class="alert alert-warning" role="alert" ng-if="signon.phoneError">
+        Phone has wrong format or empty
+    </div>
+
+    <label for="userid" class="sr-only">Login</label>
+    <input type="text" id="userid" class="form-control" placeholder="Login" ng-model="signon.data.userid" required autofocus username-available ng-model-options="{ updateOn: 'blur' }">
+
+    <label for="email" class="sr-only">Email</label>
+    <input type="email" id="email" class="form-control" placeholder="Email" ng-model="signon.data.email" required email-available ng-model-options="{ updateOn: 'blur' }">
+
+    <label for="fname" class="sr-only">First Name</label>
+    <input type="text" id="fname" class="form-control" placeholder="First Name" ng-model="signon.data.fname" required>
+
+    <label for="lname" class="sr-only">Last Name</label>
+    <input type="text" id="lname" class="form-control" placeholder="Last Name" ng-model="signon.data.lname" required>
+
+    <label for="phone" class="sr-only">Phone number</label>
+    <input type="text" id="phone" international-phone-number skip-util-script-download ng-blur="signon.checkPhone()" ng-model="signon.data.phone">
+    <!--<input type="tel" id="phone" class="form-control" required>-->
+    <!--<input type="tel" id="phone" class="form-control" placeholder="Phone number" ng-model="signon.data.phone" required>-->
+
+    <label for="password" class="sr-only">Password</label>
+    <input type="password" id="password" class="form-control" placeholder="Password" ng-model="signon.data.password" required>
+
+    <button class="btn btn-lg btn-primary btn-block" ng-click="signon.registerSubmit()">Register</button>
+    <!--<button class="btn btn-lg btn-primary btn-block" ng-disabled="registrationForm.$invalid" ng-click="signon.registerSubmit()">Register</button>-->
+</form>

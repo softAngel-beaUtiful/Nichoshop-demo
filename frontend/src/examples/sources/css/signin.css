@@ -1,0 +1,85 @@
+/*
+body {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #eee;
+}
+*/
+
+.ns-login-container {
+    width:700px;
+    padding:20px 50px 10px 50px;
+    border: 1px solid #DDD;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    -webkit-box-shadow: 0 5px 5px -1px #C4C4C4;
+    box-shadow: 0 5px 5px -1px #C4C4C4;
+    background-color: white;
+    clear:both;
+    overflow: hidden;
+}
+
+.form-signin {
+    max-width: 430px;
+    padding: 15px;
+    margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+    margin-bottom: 10px;
+}
+.form-signin .checkbox {
+    font-weight: normal;
+}
+.form-signin .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.form-signin div {
+    padding-left: 0;
+    padding-right: 0;
+}
+.form-signin div.left {
+    padding-right: 10px;
+}
+.form-signin div.ns-recaptcha {
+    height: 40px;
+}
+
+.form-signin div.right {
+    padding-left: 10px;
+}
+.ns-subtitle {
+    font-weight: bold;
+}
+.form-signin li {
+    font-size: 12px;
+}
+.form-signin form > div {
+    margin-bottom: 10px;
+}
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+.form-signin input[type="email"] {
+    margin-bottom: 10px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.ns-login-bottomline {
+    margin-top: 20px;
+}
+.ns-login-bottomline a {
+    color: #a94442;
+}

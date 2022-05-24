@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!-- File without .xml suffix to exclude suffix conflicts -->
+<project name="nichoshop-frontend" default="build">
+    <property name="www.dir" value="usr/local/www/nichoshop-frontend"/>
+    <property name="nginx.dir" value="etc/nginx/conf.d"/>
+    <property name="version.prefix" value="nichoshop-frontend ("/>
+    <property name="version.suffix" value=") testing; urgency=autodeploy"/>
+
+    <property name="project.dir" location="."/>
+    <property name="build.dir" location="build"/>
+    <property name="build.dist.dir" location="${build.dir}/dist"/>
+
+    <target name="build">
+        <mkdir dir="${build.dist.dir}"/>
+
+        <!--copy static files for nichoshop-frontend-->
+        <copy todir="${build.dist.dir}" preservelastmodified="true">
+            <fileset dir="${project.dir}/src/">
+                <exclude name="**.sh"/>
+                <exclude name="examples*/**"/>
+                <exclude name="coffee/**"/>
+            </fileset>
+        </copy>
+
+        <copy file="${project.dir}/debian/changelog" tofile="${build.dist.dir}/version.txt">
+            <filterchain>
+                <tokenfilter>
+                    <replacestring from="${version.prefix}"/>
+                </tokenfilter>
+                <tokenfilter>
+                    <replacestring from="${version.suffix}"/>
+                </tokenfilter>
+                <headfilter lines="1"/>
+            </filterchain>
+        </copy>
+    </target>
+
+    <target name="clean">
+        <delete dir="${build.dist.dir}"/>
+    </target>
+
+    <target name="install" if="dest.dir">
+        <mkdir dir="${dest.dir}"/>
+        <copy todir="${dest.dir}/${www.dir}">
+            <fileset dir="${build.dist.dir}"/>
+        </copy>
+        <copy todir="${dest.dir}/${www.dir}/examples">
+            <fileset dir="${project.dir}/debian/tmp/examples">
+                <include name="**/*.*"/>
+            </fileset>
+        </copy>
+        <chmod perm="644">
+            <fileset dir="${dest.dir}/${www.dir}"/>
+        </chmod>
+        <copy file="${project.dir}/debian/nichoshop.conf" todir="${dest.dir}/${nginx.dir}" />
+    </target>
+</project>

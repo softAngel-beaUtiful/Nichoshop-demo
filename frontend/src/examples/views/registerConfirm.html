@@ -1,0 +1,16 @@
+<div class="container ns-login-container">
+    <form class="form-signin" name="registerConfirmForm" ng-if="formSubmit">
+        <h3>Copy here code from Email</h3>
+
+        <label class="sr-only">Confirmation code</label>
+        <input type="text" ng-model="o.code" class="form-control" placeholder="Confirmation code" required autofocus>
+
+        <a class="btn btn-lg btn-primary btn-block" ng-disabled="registerConfirmForm.$invalid" click-prevent="true" ng-click="confirmCode()">Confirm Email</a>
+        <div class="ns-login-bottomline">
+            <div class="col-sm-5">&nbsp;</div>
+            <div class="col-sm-7">
+                Already confirmed?&nbsp;<a href="#/login">Login</a>
+            </div>
+        </div>
+    </form>
+</div>

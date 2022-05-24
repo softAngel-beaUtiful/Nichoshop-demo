@@ -1,0 +1,137 @@
+<div class="ns-product span12">
+    <table class="ns-product-item">
+        <tr ng-show="false">
+            <td class="col-md-3"></td>
+            <td class="col-md-7"></td>
+            <td class="col-md-2"></td>
+        </tr>
+        <tr>
+            <td colspan="3"><h4 class="ns-title">{{ product.data.product.title }}</h4></td>
+        </tr>
+        <tr>
+            <td rowspan="3"><img class="ns-image" ng-src="{{product.data.image}}"></td>
+            <td> {{ product.data.product.description }}</td>
+            <td>
+                <div class="ns-purchase-block">
+                    <div class="ns-product-options">
+                        <div class="ns-quantity">
+                            <select data-ng-model="product.data.qty">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <a click-prevent="true"
+                       ng-disabled="!(product.productId && product.variantId && product.data.qty)"
+                       ng-click="cart.putToCart(product.getProductForCreate())"
+                       class="btn btn-success ns-add-to-card"
+                       ng-if="product.data.qty <= product.data.amount">Buy it now</a>
+                    <a click-prevent="true" class="btn btn-danger disabled" ng-if="product.data.amount == 0">Item not available</a>
+                    <a click-prevent="true" class="btn btn-warning " ng-click="offerScope.openModal()" ng-if="offerScope.isDefined()">Make an offer</a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>Price:
+                <div class="ns-price">{{ product.data.price }}</div>
+            </td>
+        </tr>
+        <tr>
+            <td> Something will be here</td>
+        </tr>
+        <tr>
+            <td> Something will be here also</td>
+            <td> And here as well</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>
+                <a click-prevent="true"
+                   ng-click="cancel()"
+                   class="btn btn-success left ns-add-to-card">Back</a>
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+
+</div>
+<div ng-if="auctions.data.length" class="ns-auction span12">
+    <h3>This item is available via auction</h3>
+    <div ng-repeat="auction in auctions.data">
+        <div class="span9">
+            <p ng-if="auction.isWinner" class="bg-success span12">You are leading this auction. Your max bid {{auction.attendie.amount}}</p>
+            <p ng-if="!auction.isWinner && auction.attendie" class="bg-danger span12">Your max bid {{auction.attendie.amount}} is too small</p>
+            <p ng-if="!auction.attendie" class="bg-warning span12">You do not participate in this auction</p>
+            <div class="ns-auction ns-price">Current price: {{ auction.currentPrice }}</div>
+            <div class="ns-auction ns-time">Close time: {{ auction.finishAt }}</div>
+        </div>
+        <div class="span3">
+            <a class="btn btn-success pull-right" click-prevent="true" ng-click="auctions.openModal(auction)">Make a bid</a>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <script type="text/ng-template" id="makeABid.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Make a bid</h3>
+        </div>
+        <div class="modal-body">
+            <form name="createAuctionForm">
+                <h4>Your bid</h4>
+
+                <label for="amount" class="sr-only">Bid amount</label>
+                <input type="number" step="0.01" id="amount" class="form-control" placeholder="Bid amount"
+                       ng-model="auctions.bid.amount"
+                       required>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="auctions.ok()" ng-disabled="createAuctionForm.$invalid">Create auction</button>
+            <button class="btn btn-warning" type="button" ng-click="auctions.close()">Cancel</button>
+        </div>
+    </script>
+
+    <!-- Modal -->
+    <script type="text/ng-template" id="makeAnOffer.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Make an offer</h3>
+        </div>
+        <div class="modal-body ns-make-an-offer">
+            <form name="makeAnOfferForm">
+                <h4>Your offer</h4>
+
+                <div>
+                <label for="amount" class="ns-label span3">Offer amount</label>
+                <input type="number" step="0.01" id="amount" class="form-control" placeholder="Offer amount"
+                       ng-model="offerScope.data.amount"
+                       required>
+                </div>
+
+                <div>
+                    <label for="qty" class="ns-label span3">Qty</label>
+                    <input type="number" step="1" id="qty" min="1" class="form-control" placeholder="Offer QTY"
+                           ng-model="offerScope.data.qty"
+                           required>
+                </div>
+                <div>
+                    <label for="message" class="ns-label span3">Qty</label>
+                    <textarea id="message" min="1" class="form-control" placeholder="Message"
+                           ng-model="offerScope.data.message"></textarea>
+                </div>
+
+                <div class="ns-sum">Sum:&nbsp;<span ng-bind="offerScope.offerSum()"></span></div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="offerScope.ok()" ng-disabled="makeAnOfferForm.$invalid">Make an Offer</button>
+            <button class="btn btn-warning" type="button" ng-click="offerScope.close()">Cancel</button>
+        </div>
+    </script>
+
+</div>
+

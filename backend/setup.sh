@@ -1,0 +1,56 @@
+#!/bin/sh
+case $1 in
+configure)
+
+    DAEMON=nichoshop
+    COMPONENT=nichoshop-backend
+
+    LOGDIR=/var/log/$DAEMON
+    RUNDIR=/var/run/$DAEMON
+    HPROFDIR=$LOGDIR/hprof/$COMPONENT
+    LIB_PATH=/usr/lib/$DAEMON/$COMPONENT/lib
+    EXECUTIBLES_DIR=/usr/bin
+    STARTSCRIPTS_DIR=/etc/init.d
+
+    mkdir -p $LOGDIR
+    mkdir -p $RUNDIR
+    mkdir -p $HPROFDIR
+    mkdir -p $LIB_PATH
+
+    cp -r *.jar $LIB_PATH/
+    cp $DAEMON.sh $EXECUTIBLES_DIR/
+    cp $DAEMON $STARTSCRIPTS_DIR/
+
+    if ! chown $DAEMON:nogroup -R $LOGDIR $RUNDIR $LIB_PATH 2>/dev/null
+    then
+        #useradd $DAEMON -g nogroup
+        echo -n "Adding system user $DAEMON... "
+        adduser --quiet \
+                --system \
+                --ingroup nogroup \
+                --shell /bin/bash \
+                --no-create-home \
+                --disabled-password \
+                $DAEMON 2>/dev/null || true
+        chown $DAEMON:nogroup -R $LOGDIR $RUNDIR $LIB_PATH
+        echo "DONE"
+    fi
+
+    chown -R $DAEMON:nogroup $HPROFDIR
+    chown -R $DAEMON:nogroup $LIB_PATH
+    chown $DAEMON:nogroup $STARTSCRIPTS_DIR/$DAEMON
+    chmod +x $STARTSCRIPTS_DIR/$DAEMON
+    chmod +x $EXECUTIBLES_DIR/$DAEMON.sh
+
+    update-rc.d $DAEMON defaults > /dev/null
+    ;;
+
+    abort-upgrade|abort-remove|abort-deconfigure)
+    ;;
+    *)
+    echo "setup called with unknown argument \`$1'" >&2
+    ;;
+esac
+
+exit 0
+

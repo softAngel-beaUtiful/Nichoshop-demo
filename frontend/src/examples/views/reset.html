@@ -1,0 +1,30 @@
+<div class="container ns-login-container">
+    <form class="form-signin" name="registerConfirmForm">
+        <h3>Copy here code from Email</h3>
+
+        <label class="sr-only">Confirmation code</label>
+        <input type="text" ng-model="resetPassword.data.code" class="form-control" placeholder="Confirmation code" required autofocus>
+
+        <div class="clearfix">
+            <div class="col-sm-6 left">
+                <label class="sr-only">Choose new Password</label>
+                <input type="password" ng-model="resetPassword.data.password" class="form-control" placeholder="Choose new Password" required>
+            </div>
+            <div class="col-sm-6 right">
+                <label class="sr-only">Confirm password</label>
+                <input type="password" ng-model="resetPassword.data.repeatPassword" class="form-control" placeholder="Confirm password" required>
+            </div>
+        </div>
+
+        <a class="btn btn-lg btn-primary btn-block"
+           ng-disabled="registerConfirmForm.$invalid || resetPassword.data.repeatPassword != resetPassword.data.password"
+           click-prevent="true"
+           ng-click="resetPassword.resetPasswordSubmit()">Reset password</a>
+        <div class="ns-login-bottomline">
+            <div class="col-sm-5">&nbsp;</div>
+            <div class="col-sm-7">
+                Already confirmed?&nbsp;<a href="#/login">Login</a>
+            </div>
+        </div>
+    </form>
+</div>

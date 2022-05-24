@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" ng-app="nichoshopApp">
+<head>
+    <meta charset="utf-8">
+    <title>Nichoshop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/vendor/phone/css/intlTelInput.css">
+    <link rel="stylesheet" href="/vendor/jquery/toastr/css/toastr.css">
+    <link rel="stylesheet" href="/vendor/bootstrap/css/signin.css">
+    <link rel="stylesheet" href="/vendor/bootstrap/css/simple-sidebar.css">
+    <link rel="stylesheet" href="/examples_old/lib/css/nichoshop.css">
+    <link rel="stylesheet" href="/css/nichoshop.css">
+
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/phone/js/intlTelInput.js"></script>
+    <script src="/vendor/phone/js/utils.js"></script>
+
+    <script src="/vendor/angular/angular.js"></script>
+    <script src="/vendor/angular/exists.js"></script>
+    <script src="/vendor/angular/international-phone-number.js"></script>
+    <script src="/vendor/angular/angular-recaptcha.js"></script>
+
+    <script src="/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="/vendor/underscorejs/js/underscore.js"></script>
+
+    <script src="js/nichoshopApp.js"></script>
+    <script src="js/nichoshopMainController.js"></script>
+    <script src="/vendor/jquery/toastr/js/toastr.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+</head>
+<body ng-app="nichoshopApp">
+
+<div ng-controller="mainController">
+    <div ng-include="'templates/navigation.html'"></div>
+
+    <div ng-if="currentState == states.login || currentState == states.signon || currentState == states.resetPasswordRequest">
+        <div class="container" ng-if="currentState == states.login" ng-include="'templates/login.html'"></div>
+
+        <div class="container" ng-if="currentState == states.signon" ng-include="'templates/registration.html'"></div>
+
+        <div id="resetPassword" class="container" ng-if="currentState == states.resetPasswordRequest"
+             ng-include="'templates/resetPassword.html'"></div>
+
+        <!--<div class="container">-->
+        <div class="container" ng-show="currentState != states.login || login.capchaRequired">
+            <div class="form-signin">
+                <div class="g-recaptcha" data-sitekey="6LcxaAgTAAAAAD9tCyVRKP5h7i8Rjwwr5DnGfCQO"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" ng-if="currentState == states.confirmLocal">
+        <button class="btn btn-lg btn-primary btn-block" ng-click="signon.confirm()">Confirm Email</button>
+    </div>
+
+    <div class="container" ng-if="currentState == states.confirm">
+        <p>Please, check you email ({{ signon.confirmation.email }}), confirm address and login.</p>
+    </div>
+
+    <div class="container" ng-if="currentState == states.loggedIn">
+        <div ng-include="'templates/main.html'"></div>
+    </div>
+</div>
+</body>
+</html>

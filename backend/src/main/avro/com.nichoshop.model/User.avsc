@@ -1,0 +1,61 @@
+[
+  {
+    "namespace": "com.nichoshop.model.dto",
+    "type": "enum",
+    "name": "Role",
+    "symbols": ["CUSTOMER", "ADMIN", "CUSTOMER_SUPPORT"]
+  },
+  {
+    "namespace": "com.nichoshop.model",
+    "type": "enum",
+    "name": "AccountType",
+    "symbols": ["PERSONAL", "BUSINESS", "SYSTEM"]
+  },
+  {
+    "namespace": "com.nichoshop.model.dto",
+    "type": "record",
+    "name": "Permission",
+    "fields": [
+      {"name": "id", "type":"int"},
+      {"name": "userid", "type":"int"},
+      {"name": "code", "type":"string"}
+    ]
+  },
+  {
+    "namespace": "com.nichoshop.model.dto",
+    "type": "record",
+    "name": "UserDto",
+    "fields": [
+      {"name": "id", "type":"int"},
+      {"name": "userid", "type":"string"},
+      {"name": "email", "type":"string"},
+      {"name": "firstName", "type":"string"},
+      {"name": "lastName", "type":"string"},
+      {"name": "registrationTimestamp", "type":"long"},
+      {"name": "emailConfirmed", "type":"boolean"},
+      {"name": "suspended", "type":"boolean"},
+      {"name": "roles", "type": ["null", {"type":"array", "items":"Role"}]},
+      {"name": "permissions", "type": ["null", {"type":"array", "items":"Permission"}]}
+    ]
+  },
+
+  {
+    "namespace": "com.nichoshop.model.dto",
+    "type": "record",
+    "name": "AddressDto",
+    "fields": [
+      {"name": "id", "type":"int"},
+      {"name": "userId", "type":"int"},
+      {"name": "addressLine1", "type":"string"},
+      {"name": "addressLine2", "type":["null", "string"], "default": null},
+      {"name": "city", "type":"string"},
+      {"name": "state", "type":["null", "string"], "default": null},
+      {"name": "zip", "type":"string"},
+      {"name": "country", "type":"string"},
+      {"name": "phones", "type":["null", {"type":"array", "items":"string"}], "default": null},
+      {"name": "addressIsVerified", "type":"boolean"}
+    ]
+  }
+
+
+]

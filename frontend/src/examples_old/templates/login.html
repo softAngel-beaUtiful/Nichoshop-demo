@@ -1,0 +1,20 @@
+<form class="form-signin" name="loginForm">
+    <h2 class="form-signin-heading">Please sign in</h2>
+    <label for="inputEmail" class="sr-only">Email address or Login</label>
+    <input type="text" id="inputEmail" ng-model="login.data.login" class="form-control" placeholder="Email address or Login" required autofocus>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" ng-model="login.data.password" class="form-control" placeholder="Password" required>
+
+    <div class="form-group">
+        <div class="checkbox col-sm-6">
+            <label>
+                <input type="checkbox" ng-model="login.data.rememberMe"> Remember me
+            </label>
+        </div>
+        <div class="col-sm-6" style="margin-top: 10px;">
+            <a class="pull-right" click-prevent="true" href="#" ng-click="passwordReset()">Reset password</a>
+        </div>
+    </div>
+
+    <button class="btn btn-lg btn-primary btn-block" ng-disabled="loginForm.$invalid" ng-click="login.loginSubmit()">Sign in</button>
+</form>

@@ -1,0 +1,11 @@
+Source: nichoshop-frontend
+Section: unknown
+Priority: optional
+Maintainer: Evgeny Zhoga <ezhoga@gmail.com>
+Build-Depends: debhelper (>= 4.0.0), ant (>= 1.8.0)
+Standards-Version: 3.6.1
+
+Package: nichoshop-frontend
+Architecture: all
+Depends: npm
+Description: nichoshop-frontend

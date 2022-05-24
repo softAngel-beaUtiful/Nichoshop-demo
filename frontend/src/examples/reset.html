@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" ng-app="nichoshopApp">
+<head>
+    <meta charset="utf-8">
+    <title>My HTML File</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../vendor/phone/css/intlTelInput.css">
+    <link rel="stylesheet" href="../vendor/jquery/toastr/css/toastr.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../vendor/bootstrap/css/signin.css">
+    <link rel="stylesheet" href="../css/nichoshop.css">
+
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/phone/js/intlTelInput.js"></script>
+    <script src="../vendor/phone/js/utils.js"></script>
+
+    <script src="../vendor/angular/angular.js"></script>
+    <script src="../vendor/angular/exists.js"></script>
+    <script src="../vendor/angular/international-phone-number.js"></script>
+
+    <script src="../js/nichoshopApp.js"></script>
+    <script src="../js/nichoshopResetController.js"></script>
+    <script src="../vendor/jquery/toastr/js/toastr.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+</head>
+<body ng-controller="resetController">
+<div class="container">
+    <form class="form-signin" name="passwordForm">
+        <h2 class="form-signin-heading">Enter new password</h2>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="text" id="inputPassword" ng-model="resetPassword.data.password" class="form-control" placeholder="Password" required autofocus>
+
+        <label for="inputRepeatPassword" class="sr-only">Repeat password</label>
+        <input type="text" id="inputRepeatPassword" ng-model="resetPassword.data.repeatPassword" class="form-control" placeholder="Repeat password" required>
+
+        <button class="btn btn-lg btn-primary btn-block"
+                ng-disabled="passwordForm.$invalid || resetPassword.data.repeatPassword != resetPassword.data.password"
+                ng-click="resetPassword.resetPasswordSubmit()">Reset Password</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<HTML>
+<head>
+	<title>Login</title>
+
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/jquery-ui.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/jquery-ui.structure.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/jquery-ui.theme.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/tooltipster.css">
+	<link rel="stylesheet" type="text/css" href="./css/tooltipster-light.css">
+	<link rel="stylesheet" type="text/css" href="./css/main.css">
+
+	<script src="./js/jquery-2.1.4.min.js"></script>
+	<script src="./js/jquery-ui.min.js"></script>
+	<script src="./js/jquery.tooltipster.min.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+	<script src="./js/main.js"></script> 
+</head>
+
+<body>
+	<div class="header"> 
+		<img src="./images/logo.gif" alt="NichoShop">
+	</div>
+
+	<div class="container login-container spall-container">
+		<form>
+			<h3>Sign in</h3>
+
+			<div class="login-msg-box">
+				<img src="./images/exclamation.png" alt="!">
+				<span>Your email or password is incorrect</span>
+			</div>
+
+			<input type="text" class="form-control login-username" placeholder="Email or user ID">
+
+            <input type="password" class="form-control login-password" placeholder="Password">
+
+            <a class="btn btn-link password-recover-button" href="password-recover.html">Forgot your password?</a>
+
+			<div class="checkbox">
+				<label id="tos-label">
+					<input id="tos-checkbox" type="checkbox">
+					Stay signed in
+				</label>
+			</div>
+
+			<div id="login-recaptcha" class="g-recaptcha hidden" data-sitekey="6LcxaAgTAAAAAD9tCyVRKP5h7i8Rjwwr5DnGfCQO"></div>
+
+			<button id="login-button" type="button" class="btn btn-primary login-button">Submit</button>
+
+			<div class="inner-right-container">
+				New to NichoShop?
+				<a type="button" class="btn btn-link" href="register.html">Register</a>
+			</div>
+		</form>
+	</div>
+	
+	<div class="footer">
+		<!-- <img class="ssl-certificate" src="./images/norton_secure.png" alt="Norton secured"> -->
+
+		<div class="copyright">Copyright &#xa9; 2015. All Rights Reserved.</div>
+	</div> 
+</body>
+</HTML>
+
+

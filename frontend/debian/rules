@@ -1,0 +1,59 @@
+#!/usr/bin/make -f
+
+package=nichoshop-frontend
+
+component=nichoshop-frontend
+
+WWW_DESTDIR=usr/local/www/nichoshop-frontend
+
+DEB_WWW_DESTDIR=debian/$(WWW_DESTDIR)
+
+build:
+	dh_testdir
+	ant -Dis.debuild=true build -f 'buildfile'
+	touch build
+
+clean:
+	dh_testroot
+	dh_testdir
+	-rm -rf build
+	 rm -rf debian/tmp
+	-rm -f `find . -name "*~"`
+	-rm -rf debian/tmp debian/files* core debian/substvars
+
+install:
+	dh_testroot
+	dh_testdir
+	dh_installdirs
+	mkdir -p $(CURDIR)/debian/tmp/examples/assets/js
+	mkdir -p $(CURDIR)/debian/tmp/examples/assets/css
+
+	# /usr/local/bin/coffee --output $(CURDIR)/debian/tmp/examples/js/ $(CURDIR)/src/examples/coffee/*.coffee
+	(cd $(CURDIR)/src/examples && npm install)
+	(cd $(CURDIR)/src/examples && $(CURDIR)/src/examples/node_modules/.bin/bower install --allow-root)
+	(cd $(CURDIR)/src/examples && $(CURDIR)/src/examples/node_modules/.bin/gulp)
+	cp $(CURDIR)/src/examples/*.html $(CURDIR)/debian/tmp/examples/
+	cp -r $(CURDIR)/src/examples/admin $(CURDIR)/debian/tmp/examples/
+	cp -r $(CURDIR)/src/examples/templates $(CURDIR)/debian/tmp/examples/
+	cp -r $(CURDIR)/src/examples/views $(CURDIR)/debian/tmp/examples/
+	cp -r $(CURDIR)/src/examples/assets $(CURDIR)/debian/tmp/examples/
+	cp -r $(CURDIR)/src/examples/images $(CURDIR)/debian/tmp/examples/
+
+	ant -Ddest.dir=$(CURDIR)/debian/tmp -f 'buildfile' install
+	rm -rf $(CURDIR)/debian/tmp/examples
+
+	dh_install
+
+binary-indep: build install
+	echo 'lets build'
+	dh_fixperms
+	dh_installdeb
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary-arch: build install
+
+binary: binary-indep binary-arch
+
+.PHONY: binary binary-arch binary-indep clean

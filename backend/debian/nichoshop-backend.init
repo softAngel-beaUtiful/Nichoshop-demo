@@ -1,0 +1,57 @@
+#!/bin/bash
+
+### BEGIN INIT INFO
+# Provides:          nichoshop-backend
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Starts and stops Nichoshop backend daemon at boot time
+# Description:       Enable service provided by daemon.
+### END INIT INFO
+
+. /lib/lsb/init-functions
+
+DAEMON="nichoshop-backend"
+DAEMON_BASE="nichoshop"
+DAEMON_ROOT="/usr/bin"
+
+PID_FILE=/var/run/$DAEMON_BASE/$DAEMON.pid
+
+case "$1" in
+  start)
+    log_begin_msg "Starting $DAEMON..."
+    test -d /var/run/$DAEMON_BASE || mkdir -p /var/run/$DAEMON_BASE
+    chown $DAEMON_BASE:nogroup /var/run/$DAEMON_BASE
+
+    if start-stop-daemon --quiet --stop --signal 0 --pidfile $PID_FILE 2>/dev/null 1>/dev/null; then
+      log_failure_msg "$DAEMON already running"
+    else
+      start-stop-daemon --start --chuid $DAEMON_BASE --user $DAEMON_BASE --exec $DAEMON_ROOT/$DAEMON_BASE.sh --make-pidfile --pidfile $PID_FILE --background
+      log_end_msg $?
+      exit 0
+    fi
+  ;;
+
+  stop)
+    log_begin_msg "Stopping $DAEMON..."
+    start-stop-daemon --quiet --retry 10 --stop --pidfile $PID_FILE 1>/dev/null 2>&1
+    log_end_msg $?
+    rm -f $PID_FILE 2>/dev/null
+  ;;
+
+  restart)
+    log_action_msg "Restarting $DAEMON..."
+    $0 stop
+    sleep 1
+    $0 start
+    exit $?
+  ;;
+
+*)
+  log_success_msg "Usage $0 {start|stop|restart}"
+  exit 1
+
+esac
+
+exit 0

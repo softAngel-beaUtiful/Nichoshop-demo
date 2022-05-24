@@ -1,0 +1,45 @@
+<div id="wrapper">
+    <div ng-include="'views/block/userNavigation.html'"></div>
+
+    <div ng-include="'views/seller/productsSidebar.html'"></div>
+
+
+    <div  id="page-content-wrapper">
+    <form name="createProductForm">
+        <h2>Product details</h2>
+        <label for="title" class="sr-only">Product title</label>
+        <input type="text" id="title" class="form-control" placeholder="Product Title" ng-model="product.data.title"
+               required autofocus>
+
+        <label for="description" class="sr-only">Product description</label>
+        <textarea rows="3" id="description" class="form-control" placeholder="Product description"
+                  ng-model="product.data.description" required></textarea>
+
+        <label for="price" class="sr-only">Product price (EURO)</label>
+        <input type="number" step="0.01"  id="price" class="form-control" placeholder="Product price"
+                  ng-model="product.data.price" required>
+
+        <label for="amount" class="sr-only">Available amount</label>
+        <input type="number" id="amount" class="form-control" placeholder="Available amount"
+               ng-model="product.data.amount"
+               required>
+
+        <div ng-repeat="o in product.categories">
+            <h4><a href="#" click-prevent="true" ng-click="product.chooseCategory(o.id)">{{ "-->" + o.title }}</a></h4>
+        </div>
+
+        <div ng-repeat="o in product.currentChildren">
+            <h5><a href="#" click-prevent="true" ng-click="product.chooseSubCategory(o.category.id)">{{ "+ " +
+                o.category.name }}</a></h5>
+        </div>
+
+
+        <button class="btn btn-lg btn-primary btn-block"
+                ng-disabled="createProductForm.$invalid || product.categories.length == 1"
+                ng-click="product.createProduct()">Create new product
+        </button>
+        <!--<button class="btn btn-lg btn-primary btn-block" ng-disabled="registrationForm.$invalid" ng-click="signon.registerSubmit()">Register</button>-->
+    </form>
+    </div>
+
+</div>

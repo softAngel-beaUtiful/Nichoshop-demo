@@ -1,0 +1,9 @@
+{
+  "namespace": "com.nichoshop.model.dto",
+  "type": "record",
+  "name": "LoginDto",
+  "fields": [
+    {"name": "counter", "type":"int"},
+    {"name": "timestamp", "type":"long"}
+  ]
+}

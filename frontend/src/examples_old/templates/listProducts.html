@@ -1,0 +1,13 @@
+<div>
+    <h2>List of products</h2>
+
+    <!--<h3>1 {{products}}</h3>-->
+    <!--<h3>2 {{products.data}}</h3>-->
+
+    <div ng-repeat="(i, p) in products.data">
+        <h4>{{i+1}}. {{ p.title }}</h4>
+        <p>{{ p.description }}</p>
+        <!--<a href="#">+</a>-->
+    </div>
+
+</div>

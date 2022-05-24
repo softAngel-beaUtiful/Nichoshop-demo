@@ -1,0 +1,38 @@
+<nav class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Nichoshop</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li ng-if="currentArea == areas.adminSpace"><a href="#" click-prevent="true" ng-click="setSidebar('inventory')">Inventory</a></li>
+                <!--
+                                <li><a href="#about">About</a></li>
+                                <li><a href="#contact">Contact</a></li>
+                -->
+            </ul>
+            <ul class="nav navbar-nav navbar-right" ng-if="!userData.data">
+                <li class="pull-right" ng-class="currentState == states.signon ? 'active' : ''"><a click-prevent="true" href="#" ng-click="setState(states.signon, true)">Signon</a></li>
+                <li class="pull-right" ng-class="currentState == states.login ? 'active' : ''"><a click-prevent="true" href="#" ng-click="setState(states.login, true)">Login</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" ng-if="userData.data">
+                <!--<li class="pull-right"><a click-prevent="true" href="#" ng-click="userData.logout()">Logout ({{userData.data.first_name + ' ' + userData.data.last_name}})</a></li>-->
+                <li class="dropdown-menu-right dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{userData.data.first_name + ' ' + userData.data.last_name}} <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li ng-if="currentArea == areas.adminSpace"><a href="#" click-prevent="true" ng-click="setArea(areas.userSpace)">User space</a></li>
+                        <li ng-if="currentArea == areas.userSpace"><a href="#" click-prevent="true" ng-click="setArea(areas.adminSpace)">Admin space</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a click-prevent="true" href="#" ng-click="userData.logout()">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.nav-collapse -->
+    </div><!-- /.container -->
+</nav><!-- /.navbar -->

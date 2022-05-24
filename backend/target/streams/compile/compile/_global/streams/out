@@ -1,0 +1,24 @@
+[0m[[0m[33mwarn[0m] [0m[0mE:\Github\nichoshop-demo\backend\src\main\scala\com\nichoshop\servlets\admin\UsersController.scala:31:12: This catches all Throwables. If this is really intended, use `case e : Throwable` to clear this warning.[0m
+[0m[[0m[33mwarn[0m] [0m[0m      case e =>[0m
+[0m[[0m[33mwarn[0m] [0m[0m           ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mE:\Github\nichoshop-demo\backend\src\main\scala\com\nichoshop\servlets\admin\UsersController.scala:47:12: This catches all Throwables. If this is really intended, use `case e : Throwable` to clear this warning.[0m
+[0m[[0m[33mwarn[0m] [0m[0m      case e =>[0m
+[0m[[0m[33mwarn[0m] [0m[0m           ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mE:\Github\nichoshop-demo\backend\src\main\scala\com\nichoshop\legacy\dao\slick\SlickProductDAO.scala:17:5: match may not be exhaustive.[0m
+[0m[[0m[33mwarn[0m] [0m[0mIt would fail on the following inputs: (0, _), (1, _), (3, _), (??, _), (_, 1), (_, 2), (_, 3), (_, 4), (_, ??), (_, _)[0m
+[0m[[0m[33mwarn[0m] [0m[0m    (state, filter) match {[0m
+[0m[[0m[33mwarn[0m] [0m[0m    ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mE:\Github\nichoshop-demo\backend\src\main\scala\com\nichoshop\services\CategoryService.scala:64:20: match may not be exhaustive.[0m
+[0m[[0m[33mwarn[0m] [0m[0mIt would fail on the following input: ProductSpecificAttributeEntity(None, _, _, _, _, _, _, _)[0m
+[0m[[0m[33mwarn[0m] [0m[0m    attributes.map {case models.ProductSpecificAttributeEntity(Some(id), catId, name, valueType, valueOptions, defaultValue, _, isMultivariation) =>[0m
+[0m[[0m[33mwarn[0m] [0m[0m                   ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mE:\Github\nichoshop-demo\backend\src\main\scala\com\nichoshop\utils\Conversions.scala:69:37: match may not be exhaustive.[0m
+[0m[[0m[33mwarn[0m] [0m[0mIt would fail on the following input: TPermission(_, _, (x: String forSome x not in (admin, customer, customerSupport)))[0m
+[0m[[0m[33mwarn[0m] [0m[0m      setRoles(tpermissions.flatMap {[0m
+[0m[[0m[33mwarn[0m] [0m[0m                                    ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mthere were two deprecation warnings (since 2.11.0)[0m
+[0m[[0m[33mwarn[0m] [0m[0mthere were 48 deprecation warnings (since 2.12.0)[0m
+[0m[[0m[33mwarn[0m] [0m[0mthere were 18 deprecation warnings (since 2.6.0)[0m
+[0m[[0m[33mwarn[0m] [0m[0mthere were 68 deprecation warnings in total; re-run with -deprecation for details[0m
+[0m[[0m[33mwarn[0m] [0m[0mthere were 8 feature warnings; re-run with -feature for details[0m
+[0m[[0m[33mwarn[0m] [0m[0m10 warnings found[0m

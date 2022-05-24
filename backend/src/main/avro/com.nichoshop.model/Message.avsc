@@ -1,0 +1,66 @@
+[
+  {
+    "namespace": "com.nichoshop.model.dto",
+    "type": "record",
+    "name": "MessageDto",
+    "fields": [
+      {
+        "name": "id",
+        "type": [
+          "null",
+          "int"
+        ],
+        "default": null
+      },
+      {
+        "name": "from",
+        "type": [
+          "null",
+          "int"
+        ],
+        "default": null
+      },
+      {
+        "name": "to",
+        "type": [
+          "null",
+          "int"
+        ],
+        "default": null
+      },
+      {
+        "name": "timestamp",
+        "type": "long"
+      },
+      {
+        "name": "description",
+        "type": "string"
+      }
+    ]
+  },
+  {
+    "namespace": "com.nichoshop.model.dto",
+    "type": "record",
+    "name": "MessageLogDto",
+    "fields": [
+      {
+        "name": "id",
+        "type": [
+          "null",
+          "int"
+        ],
+        "default": null
+      },
+      {
+        "name": "messages",
+        "type": ["null",
+          {
+            "type": "array",
+            "items": "MessageDto"
+          }],
+          "default": null
+      }
+    ]
+  }
+
+]

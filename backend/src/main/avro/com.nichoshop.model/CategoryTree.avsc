@@ -1,0 +1,44 @@
+[
+  {
+    "namespace": "com.nichoshop.model.dto",
+    "type": "record",
+    "name": "CategoryDto",
+    "fields": [
+      {
+        "name": "id",
+        "type": "int"
+      },
+      {
+        "name": "parentId",
+        "type": "int"
+      },
+      {
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "name": "conditionType",
+        "type": ["null", "string"],
+        "default": null
+      }
+    ]
+  },
+  {
+    "namespace": "com.nichoshop.model.dto",
+    "type": "record",
+    "name": "CategoryTreeDto",
+    "fields": [
+      {
+        "name": "category",
+        "type": "CategoryDto"
+      },
+      {
+        "name": "children",
+        "type": {
+          "type": "array",
+          "items": "CategoryTreeDto"
+        }
+      }
+    ]
+  }
+]

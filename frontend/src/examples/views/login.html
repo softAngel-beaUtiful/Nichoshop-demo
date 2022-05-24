@@ -1,0 +1,36 @@
+<div class="container ns-login-container">
+    <form class="form-signin" name="loginForm">
+        <h3>Sign in</h3>
+    <!--<h2 class="form-signin-heading">Please sign in</h2>-->
+    <label for="inputEmail" class="sr-only">Email address or Login</label>
+
+    <input type="text" id="inputEmail" ng-model="login.data.login" class="form-control" placeholder="Email address or Login" required autofocus>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" ng-model="login.data.password" class="form-control" placeholder="Password" required>
+
+    <div class="form-group">
+        <div class="checkbox col-sm-6">
+            <label>
+                <input type="checkbox" ng-model="login.data.rememberMe"> Stay signed in
+            </label>
+        </div>
+        <div class="col-sm-6" style="margin-top: 10px;">
+            <a href="#/passwordReset" class="pull-right">Forgot your password?</a>
+            <!--<a href="#/passwordReset" class="pull-right" click-prevent="true" href="#" ng-click="passwordReset()">Forgot your password?</a>-->
+        </div>
+    </div>
+
+        <div class="form-signin clearfix" ng-if="recaptchaRequired">
+            <div vc-recaptcha key="'6LcxaAgTAAAAAD9tCyVRKP5h7i8Rjwwr5DnGfCQO'"></div>
+        </div>
+
+    <button class="btn btn-lg btn-primary btn-block" ng-disabled="loginForm.$invalid" ng-click="login.loginSubmit()">Sign in</button>
+
+        <div class="ns-login-bottomline">
+            <div class="col-sm-5">&nbsp;</div>
+            <div class="col-sm-7">
+                New to NichoShop? <a href="#/register">Register</a>
+            </div>
+        </div>
+</form>
+</div>

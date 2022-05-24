@@ -1,0 +1,29 @@
+{
+  "name": "nichoshop-build",
+  "version": "0.0.1",
+  "description": "",
+  "main": "Gruntfile.js",
+  "devDependencies": {
+    "coffee-script": "latest",
+
+    "bower": "latest",
+    "gulp": "3.9.0",
+    "gulp-order":"latest",
+    "gulp-coffee": "latest",
+
+    "gulp-concat":"latest",
+    "gulp-util":"latest",
+    "gulp-bower":"latest",
+    "main-bower-files":"latest",
+    "gulp-concat-vendor":"latest",
+    "gulp-less":"latest",
+    "event-stream":"latest",
+    "gulp-modify":"latest",
+    "del":"latest",
+    "vinyl-paths":"latest",
+    "gulp-flatten":"latest"
+
+  },
+  "author": "Evgeny Zhoga",
+  "license": "MIT"
+}

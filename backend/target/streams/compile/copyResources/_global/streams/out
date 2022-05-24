@@ -1,0 +1,17 @@
+[0m[[0m[0mdebug[0m] [0m[0mCopy resource mappings: [0m
+[0m[[0m[0mdebug[0m] [0m[0m	(E:\Github\nichoshop-demo\backend\src\main\resources\application.conf,E:\Github\nichoshop-demo\backend\target\scala-2.12\classes\application.conf)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(E:\Github\nichoshop-demo\backend\src\main\resources\logback.xml,E:\Github\nichoshop-demo\backend\target\scala-2.12\classes\logback.xml)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(E:\Github\nichoshop-demo\backend\src\main\resources\nichoshop.properties,E:\Github\nichoshop-demo\backend\target\scala-2.12\classes\nichoshop.properties)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(E:\Github\nichoshop-demo\backend\src\main\resources\prod.conf,E:\Github\nichoshop-demo\backend\target\scala-2.12\classes\prod.conf)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(E:\Github\nichoshop-demo\backend\src\main\resources\stage.conf,E:\Github\nichoshop-demo\backend\target\scala-2.12\classes\stage.conf)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(E:\Github\nichoshop-demo\backend\src\main\resources\db\dump\db_150322.sql,E:\Github\nichoshop-demo\backend\target\scala-2.12\classes\db\dump\db_150322.sql)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(E:\Github\nichoshop-demo\backend\src\main\resources\db\migration\V1.0.0__setup.sql,E:\Github\nichoshop-demo\backend\target\scala-2.12\classes\db\migration\V1.0.0__setup.sql)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(E:\Github\nichoshop-demo\backend\src\main\resources\db\migration\V1.0.1__1.sql,E:\Github\nichoshop-demo\backend\target\scala-2.12\classes\db\migration\V1.0.1__1.sql)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(E:\Github\nichoshop-demo\backend\src\main\resources\db\migration\V1.0.2__2.sql,E:\Github\nichoshop-demo\backend\target\scala-2.12\classes\db\migration\V1.0.2__2.sql)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(E:\Github\nichoshop-demo\backend\src\main\resources\db\migration\V1.0.3__3.sql,E:\Github\nichoshop-demo\backend\target\scala-2.12\classes\db\migration\V1.0.3__3.sql)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(E:\Github\nichoshop-demo\backend\src\main\resources\db\migration\V1.0.4__4.sql,E:\Github\nichoshop-demo\backend\target\scala-2.12\classes\db\migration\V1.0.4__4.sql)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(E:\Github\nichoshop-demo\backend\src\main\resources\db\migration\V1.0.5__5.sql,E:\Github\nichoshop-demo\backend\target\scala-2.12\classes\db\migration\V1.0.5__5.sql)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(E:\Github\nichoshop-demo\backend\src\main\resources\db\migration\V1.0.6__add_phone_for_users.sql,E:\Github\nichoshop-demo\backend\target\scala-2.12\classes\db\migration\V1.0.6__add_phone_for_users.sql)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(E:\Github\nichoshop-demo\backend\src\main\resources\db\migration\V1.0.7__add-permission-table.sql,E:\Github\nichoshop-demo\backend\target\scala-2.12\classes\db\migration\V1.0.7__add-permission-table.sql)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(E:\Github\nichoshop-demo\backend\src\main\resources\db\migration\V1.0.8__return-token-hash-session.sql,E:\Github\nichoshop-demo\backend\target\scala-2.12\classes\db\migration\V1.0.8__return-token-hash-session.sql)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(E:\Github\nichoshop-demo\backend\src\main\resources\db\migration\V1.0.9__roles.sql,E:\Github\nichoshop-demo\backend\target\scala-2.12\classes\db\migration\V1.0.9__roles.sql)[0m

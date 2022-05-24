@@ -1,0 +1,6 @@
+#!/bin/bash
+
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+HTML_DIR="$DIR/frontend/src"
+sed 's|current_dir|'$HTML_DIR'|' nginx.conf.template > nginx.conf
+nginx -c $DIR/nginx.conf

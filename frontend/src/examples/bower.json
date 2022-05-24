@@ -1,0 +1,35 @@
+{
+  "name": "nichoshop-frontend",
+  "version": "0.0.1",
+  "authors": [
+    "Evgeny Zhoga <ezhoga@gmail.com>"
+  ],
+  "description": "Nichoshop shop",
+  "dependencies": {
+    "angular": "~1.4.5",
+    "angular-bootstrap": "~0.14.2",
+    "angular-recaptcha": "~2.2.5",
+    "angular-route": "~1.4.5",
+    "angular-ui-tree": "~2.9.0",
+    "bootstrap": "~3.3.5",
+    "components-font-awesome": "~4.4.0",
+    "google-recaptcha": "*",
+    "international-phone-number": "~0.0.11",
+    "jquery": "~2.1.4",
+    "toastr": "~2.1.2",
+    "underscore": "~1.8.3"
+  },
+  "resolutions": {
+    "angular": "~1.4.5"
+  },
+  "main": "index.html",
+  "license": "MIT",
+  "homepage": "www.nichoshop.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
